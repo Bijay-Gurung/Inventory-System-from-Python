@@ -1,0 +1,2 @@
+{"Product_id": "2", "Product_type": "soap", "Product_name": "Pearl", "Product_amount": "$1"}
+{"Product_id": "1", "Product_type": "Face Wash", "Product_name": "Mama Earth", "Product_amount": "$6.7"}
