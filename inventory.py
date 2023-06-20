@@ -1,10 +1,9 @@
+product = {}
 def welcome():
     print("Welcome to Inventory System!")
 
-def add_product():
+def add_product(product):
     welcome()
-
-    product = {}
 
     product_id = input("Enter Product Id: ")
     product_type = input("Enter Product Type: ")
@@ -18,7 +17,14 @@ def add_product():
         'Product_amount' : product_amount
     })
 
-    print(product)
+    with open('products.txt','a')as file:
+        file.write(str(product))
+add_product(product)
+def remove_product():
+    pass
 
-add_product()
-
+def search_product():
+    with open('products.txt','r')as file:
+        for line in file:
+            print(line.strip())
+search_product()
