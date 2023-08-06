@@ -1,68 +1,55 @@
 import json
-product = {}
-def welcome():
-    print("Welcome to Inventory System!")
+class inventory:
+    def __init__(self,product_id,product_name,product_type,product_price,title,choice,container):
+        self.product_dict = container
+        self.id = product_id
+        self.name = product_name
+        self.type = product_type
+        self.price = product_price
+        self.title = title
+        self.choice = choice
+    def title(self):
+        self.title = "Inventory Management System"
+        print(self.title)
+    def add_product(self):
+        self.id = int(input("Enter Product ID: "))
+        self.name = input("Enter Product Name: ")
+        self.type = input("Enter Product Type: ")
+        self.price = int(input("Enter Product Price: "))
+        self.product_list = {}
+        self.product_list.update({
+            "ID": self.id,
+            "Product Name": self.name,
+            "Product Type": self.type,
+            "Product Price": self.price
+        })
 
-def add_product(product):
-    print("Here you can Add Product")
+        with open("products.txt","a")as file:
+            file.write(json.dumps(self.product_list) + '\n')
 
-    product_id = input("Enter Product Id: ")
-    product_type = input("Enter Product Type: ")
-    product_name = input("Enter Product Name: ")
-    product_amount = input("Enter Product Amount: ")
+    def remove_product(self):
+        pass
+    def inventory(self):
+        pass
+    def main(self):
+        while True:
+            title()
+            print("1. Add Product")
+            print("2. Remove Product")
+            print("3. Inventory")
+            print("q. Quit")
+            self.choice = input(">")
 
-    product.update({
-        'Product_id' : product_id,
-        'Product_type' : product_type,
-        'Product_name' : product_name,
-        'Product_amount' : product_amount
-    })
-
-    with open('products.txt','a')as file:
-        file.write(json.dumps(product) + '\n')
-def remove_product():
-    print("Here you can remove product")
-    product_id = input("Enter Product Id to remove: ")
-    products = []
-
-    with open('products.txt', 'r') as file:
-        for line in file:
-            product = json.loads(line)
-            if product['Product_id'] == product_id:
-                print(f"Removed product with ID {product_id}: {product}")
+            if self.choice == "1":
+                add_product()
+            elif self.choice == "2":
+                remove_product()
+            elif self.choice == "3":
+                inventory()
+            elif self.choice == "q" or self.choice == "Q":
+                break
             else:
-                products.append(product)
+                print("Invalid input, try again!")
 
-    with open('products.txt', 'w') as file:
-        for product in products:
-            file.write(json.dumps(product) + '\n')
-
-
-def search_product():
-    with open('products.txt','r')as file:
-        for line in file:
-            product = json.loads(line)
-            print(product)
-
-def main():
-    while True:
-        welcome()
-        print("1. Add Product")
-        print("2. Remove Product")
-        print("3. Search Product")
-        print("q. Quit")
-
-        choice = input(">")
-
-        if choice == "1":
-            add_product(product)
-        elif choice == "2":
-            remove_product()
-        elif choice == "3":
-            search_product()
-        elif choice == "q":
-            break
-        else:
-            print("Invalid choice, please try again!")
-if __name__ == '__main__':
+if __name__== "main()":
     main()
